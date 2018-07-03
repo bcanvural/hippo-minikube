@@ -1,4 +1,4 @@
-#Run Hippo in Minikube
+# Run Hippo in Minikube
 
 ```bash
 minikube --memory 8192 --cpus 2 start
@@ -23,7 +23,13 @@ To deploy everything at once, from kubernetes directory run:
 ./deploy-all.sh
 ```
 
-###Remarks
+Start up the minikube dashboard:
+
+```bash
+minikube dashboard
+```
+
+### Remarks
 * conf/context.xml has mysql configured. This is typical mysql setup for a Hippo project except that the url for the database server points to:
   
   mysql.default.svc.cluster.local:3306
