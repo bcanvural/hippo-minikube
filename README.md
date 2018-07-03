@@ -9,6 +9,14 @@ Create the persistant volume and persistant volume claim for mysql. From kuberne
 kubectl create -f mysql-pv.yaml
 ```
 
+Add an entry in your /etc/hosts file. Replace <minikube_ip> with the output of the command:
+
+```bash
+minikube ip
+```
+
+<minikube_ip> backatcha.server hippo.server 
+
 To deploy everything at once, from kubernetes directory run:
 
 ```bash
