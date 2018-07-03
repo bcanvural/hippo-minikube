@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hippo
+  labels:
+    app: hippo
+    tier: backend
+spec:
+  type: ClusterIP
+#  sessionAffinity: ClientIP #Ingress controller uses cookies for session affinity
+  ports:
+    - port: 8080
+  selector:
+    app: hippo
+    tier: backend
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hippo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+          app: hippo
+  template:
+    metadata:
+      labels:
+        app: hippo
+        tier: backend
+    spec:
+      containers:
+        - name: hippo
+          image: bcanvural/hippo-mysql-kube:latest #Point to a public docker image registry
+          ports:
+            - containerPort: 8080

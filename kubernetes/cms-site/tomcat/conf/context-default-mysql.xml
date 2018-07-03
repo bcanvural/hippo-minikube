@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Copyright 2016-2018 Hippo B.V. (http://www.onehippo.com)
+  -->
+<Context>
+    <!-- Disable session persistence across Tomcat restarts -->
+    <Manager pathname="" />
+
+    <Parameter name="repository-address" value="rmi://127.0.0.1:1099/hipporepository" override="false"/>
+    <Parameter name="repository-directory" value="${catalina.base}/../repository" override="false"/>
+    <Parameter name="start-remote-server" value="false" override="false"/>
+
+    <Parameter name="check-username" value="liveuser" override="false"/>
+
+    <!-- Enable this to let wicket output a wicketpath attribute for elements,
+         see: http://www.onehippo.org/7_8/library/development/create-a-selenium-test-case.html -->
+    <!--
+    <Parameter name="output-wicketpaths" value="true"/>
+    -->
+
+    <Resource
+      name="jdbc/repositoryDS" auth="Container" type="javax.sql.DataSource"
+      maxTotal="100" maxIdle="10" initialSize="2" maxWaitMillis="10000"
+      testWhileIdle="true" testOnBorrow="false" validationQuery="SELECT 1"
+      timeBetweenEvictionRunsMillis="10000"
+      minEvictableIdleTimeMillis="60000"
+      username="hippo" password="hippo"
+      driverClassName="com.mysql.jdbc.Driver"
+      url="jdbc:mysql://mysql.default.svc.cluster.local:3306/repositoryDS?characterEncoding=utf8&amp;useSSL=false"/>
+
+
+</Context>

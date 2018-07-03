@@ -1,0 +1,42 @@
+version: '2.1'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: repositoryDS
+      MYSQL_USER: hippo
+      MYSQL_PASSWORD: hippo
+    restart: always
+    healthcheck:
+      test: 'mysqladmin -uroot -ppassword ping'
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - local_docker_network
+
+  cms-site:
+    image: hippocms/project-h2-example:12
+    depends_on:
+      mysql: {condition: service_healthy}
+    networks:
+      - local_docker_network
+    restart: always
+
+  nginx:
+    build: ../nginx/
+    ports:
+      - "80:80"
+    networks:
+      - local_docker_network
+    depends_on:
+      - mysql
+      - cms-site
+    restart: always
+
+networks:
+  local_docker_network:
+    driver: bridge
