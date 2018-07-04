@@ -6,6 +6,7 @@ Install minikube https://github.com/kubernetes/minikube
 ```bash
 brew cask install minikube
 ```
+Start minikube with some additional resources
 
 ```bash
 minikube --memory 8192 --cpus 2 start
