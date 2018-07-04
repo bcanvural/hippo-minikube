@@ -1,5 +1,12 @@
 # Run Hippo in Minikube
 
+Install virtualbox https://www.virtualbox.org/wiki/Downloads
+
+Install minikube https://github.com/kubernetes/minikube
+```bash
+brew cask install minikube
+```
+
 ```bash
 minikube --memory 8192 --cpus 2 start
 ```
@@ -16,6 +23,11 @@ minikube ip
 ```
 
 <minikube_ip> backatcha.server hippo.server 
+
+Enable ingress addon in minikube
+```bash
+minikube addons enable ingress
+```
 
 To deploy everything at once, from kubernetes directory run:
 
