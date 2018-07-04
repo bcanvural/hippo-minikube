@@ -23,9 +23,10 @@ Add an entry in your /etc/hosts file. Replace <minikube_ip> with the output of t
 minikube ip
 ```
 Add the following line in your /etc/hosts file:
-
-<minikube_ip> backatcha.server hippo.server 
-
+```text
+<minikube_ip> backatcha.server hippo.server
+```
+ 
 Enable ingress addon in minikube
 ```bash
 minikube addons enable ingress
