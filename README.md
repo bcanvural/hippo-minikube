@@ -53,7 +53,7 @@ eval $(minikube docker-env)
 ```
 More info on the above command is at: https://kubernetes.io/docs/setup/minikube#reusing-the-docker-daemon
 Note that you should keep using the same shell
-* Now you can build the docker image and tag it at the same time:
+* Now you can build the docker image and tag it at the same time, from kubernetes/cms-site directory:
 ```bash
 docker build username/release-name:version .
 ```
