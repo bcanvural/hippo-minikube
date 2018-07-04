@@ -42,6 +42,34 @@ Start up the minikube dashboard:
 minikube dashboard
 ```
 
+## Local Development without pushing to public docker registry
+If you  want to do develepment in local projects but not want to push to public image registries, consider the following workflow:
+* Make changes in local project, e.g. in hippo's site module.
+* Recreate distribution file, e.g. mvn clean verify && mvn -Pdist
+* Move distribution file to kubernetes/cms-site folder (remove any existing .tar.gz)
+* To be able to work with the docker daemon on your mac/linux host use the docker-env command in your shell
+```bash
+eval $(minikube docker-env)
+```
+More info on the above command is at: https://kubernetes.io/docs/setup/minikube#reusing-the-docker-daemon
+Note that you should keep using the same shell
+* Now you can build the docker image and tag it at the same time:
+```bash
+docker build username/release-name:version .
+```
+You can replace the username, release-name, and version in the command above. Dot(.) refers to the location of the dockerfile which is in kubernetes/cms-site directory.
+* At this point the docker image is tagged and pods in the cluster can pull this image. Go to a pod definition file and replace the image. E.g.
+```yaml
+#SNIP
+ spec:
+      containers:
+        - name: hippo
+          image: username/release-name:version #can pull since we ran the eval command
+          ports:
+            - containerPort: 8080
+#-SNIP
+```
+
 ### Remarks
 * conf/context.xml has mysql configured. This is typical mysql setup for a Hippo project except that the url for the database server points to:
   
