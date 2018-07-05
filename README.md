@@ -72,6 +72,25 @@ You can replace the username, release-name, and version in the command above. Do
 #-SNIP
 ```
 
+## Remote debugger for your hippo project
+
+if you want to debug the deployed hippo project within the cluster:
+* Set the environment variable "JAVA_ENABLE_DEBUG" to true in hippo-deployment.yaml
+* Uncomment the part that exposes the container port 5005 (in hippo-deployment.yaml)
+```yaml
+#SNIP
+          ports:
+            - containerPort: 8080
+#           - containerPort: 5005
+#             name: "jvm-debug" #Uncomment these  two lines
+#-SNIP
+```
+* Activate port forwarding from localhost:5005 to pod's 5005 by running the command:
+```bash
+kubectl port-forward deployments/hippo 5005:5005
+```
+* Connect from IntelliJ (or other) remotely to localhost:5005 your breakpoints will be triggered
+
 ### Remarks
 * conf/context.xml has mysql configured. This is typical mysql setup for a Hippo project except that the url for the database server points to:
   
