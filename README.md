@@ -44,6 +44,27 @@ Start up the minikube dashboard:
 minikube dashboard
 ```
 
+When hippo pod(s) have started up, add the following virtual host config so channel manager works:
+(Considering the host name is "hippo.server")
+```yaml
+/kube:
+  jcr:primaryType: hst:virtualhostgroup
+  jcr:uuid: 74f28b5a-90ff-43e7-8c7d-f8518039ef70
+  hst:cmslocation: http://hippo.server/
+  hst:defaultport: 8080
+  /server:
+    jcr:primaryType: hst:virtualhost
+    jcr:uuid: 184b3423-8c59-47a7-9cd9-63f940e3d53e
+    /hippo:
+      jcr:primaryType: hst:virtualhost
+      jcr:uuid: ff6ee315-c02a-4dd5-a880-f753196f02de
+      /hst:root:
+        jcr:primaryType: hst:mount
+        jcr:uuid: e8f68f42-be8c-4571-b707-66d79ac19847
+        hst:homepage: root
+        hst:mountpoint: /hst:hst/hst:sites/myhippoproject
+```
+
 ## Local Development without pushing to public docker registry
 If you  want to do develepment in local projects but not want to push to public image registries, consider the following workflow:
 * Make changes in local project, e.g. in hippo's site module.
