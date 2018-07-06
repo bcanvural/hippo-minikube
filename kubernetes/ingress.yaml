@@ -1,18 +1,55 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-tutorial
+  name: ingress-site
+  annotations:
+    ingress.kubernetes.io/affinity: cookie
+    ingress.kubernetes.io/session-cookie-name: route
+    ingress.kubernetes.io/session-cookie-hash: sha1
+#    ingress.kubernetes.io/rewrite-target: /site #does not work in minikube for some reason
+    nginx.ingress.kubernetes.io/rewrite-target: /site
+    ingress.kubernetes.io/proxy-cookie-path: "/site/ /"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: hippo.site
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hippo
+          servicePort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-cms
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/affinity: "cookie"
-    nginx.ingress.kubernetes.io/session-cookie-name: "route"
-    nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"
-# Custom proxy header setting doesn't seem to be necessary
-#    nginx.ingress.kubernetes.io/configuration-snippet: |
-#          more_set_headers "X-Forwarded-Host: $host";
-#          more_set_headers "X-Forwarded-Server: $host";
-#          more_set_headers "X-Forwarded-For: $proxy_add_x_forwarded_for";
-#          more_set_headers "X-Forwarded-Proto: $scheme";
+    ingress.kubernetes.io/affinity: "cookie"
+    ingress.kubernetes.io/session-cookie-name: "route"
+    ingress.kubernetes.io/session-cookie-hash: "sha1"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: hippo.cms
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hippo
+          servicePort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-backatcha
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/affinity: "cookie"
+    ingress.kubernetes.io/session-cookie-name: "route"
+    ingress.kubernetes.io/session-cookie-hash: "sha1"
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
   - host: backatcha.server
@@ -22,10 +59,3 @@ spec:
         backend:
           serviceName: backatcha-server
           servicePort: 8081
-  - host: hippo.server
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: hippo
-          servicePort: 8080
