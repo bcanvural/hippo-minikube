@@ -24,7 +24,7 @@ minikube ip
 ```
 Add the following line in your /etc/hosts file:
 ```text
-<minikube_ip> backatcha.server hippo.server
+<minikube_ip> backatcha.server hippo.site hippo.cms
 ```
  
 Enable ingress addon in minikube
@@ -45,25 +45,29 @@ minikube dashboard
 ```
 
 When hippo pod(s) have started up, add the following virtual host config so channel manager works:
-(Considering the host name is "hippo.server")
+(Considering the site host name is "hippo.site")
 ```yaml
 /kube:
   jcr:primaryType: hst:virtualhostgroup
-  jcr:uuid: 74f28b5a-90ff-43e7-8c7d-f8518039ef70
-  hst:cmslocation: http://hippo.server/
+  jcr:uuid: 31c0e8e9-c81b-432b-b391-6eaf055cfc13
+  hst:cmslocation: http://hippo.cms/cms
   hst:defaultport: 8080
-  /server:
+  /site:
     jcr:primaryType: hst:virtualhost
-    jcr:uuid: 184b3423-8c59-47a7-9cd9-63f940e3d53e
+    jcr:uuid: 3c5585e4-ad07-4484-b8cb-189902fbb211
     /hippo:
       jcr:primaryType: hst:virtualhost
-      jcr:uuid: ff6ee315-c02a-4dd5-a880-f753196f02de
+      jcr:uuid: 6e40871e-eaf3-47ee-b7bc-3b1b9dd3b6d2
       /hst:root:
         jcr:primaryType: hst:mount
-        jcr:uuid: e8f68f42-be8c-4571-b707-66d79ac19847
+        jcr:uuid: 08a87064-8383-4ba1-a4cf-0ca526f5aac8
         hst:homepage: root
         hst:mountpoint: /hst:hst/hst:sites/myhippoproject
+        hst:showcontextpath: false
 ```
+
+* You can visit the site at hippo.site/ and the cms at hippo.cms/cms
+* You can visit the backatcha spring boot app at backatcha.server/
 
 ## Local Development without pushing to public docker registry
 If you  want to do develepment in local projects but not want to push to public image registries, consider the following workflow:
@@ -138,5 +142,5 @@ you need to build your own and push them to a registry that your local machine h
 docker build -t my-release:latest .
 ```
 Then you can push it to a public registry and change the images in pod specification yaml files
-* Backatcha-server is a simple spring boot app that prints a UUID.
+* Backatcha-server is a simple spring boot app that prints a UUID. Scale up this app and see that the load balancer works.
   
