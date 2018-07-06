@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hst:hst/hst:hosts/kube/server:
+    /hst:hst/hst:hosts/kube/site:
       .meta:residual-child-node-category: content
       jcr:primaryType: hst:virtualhost
       /hippo:
@@ -11,3 +11,4 @@ definitions:
           jcr:primaryType: hst:mount
           hst:homepage: root
           hst:mountpoint: /hst:hst/hst:sites/myhippoproject
+          hst:showcontextpath: false
