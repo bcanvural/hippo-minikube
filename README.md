@@ -106,6 +106,12 @@ if you want to debug the deployed hippo project within the cluster:
 #             name: "jvm-debug" #Uncomment these  two lines
 #-SNIP
 ```
+* If you already had a  cluster running simply apply the changes (from kubernetes directory):
+
+```bash
+kubectl apply -f hippo-deployment.yaml
+```
+
 * Activate port forwarding from localhost:5005 to pod's 5005 by running the command:
 ```bash
 kubectl port-forward deployments/hippo 5005:5005
