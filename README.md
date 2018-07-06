@@ -11,10 +11,10 @@ Start minikube with some additional resources
 ```bash
 minikube --memory 8192 --cpus 2 start
 ```
-Create the persistant volume and persistant volume claim for mysql. From kubernetes directory run:
+Create the persistant volumes and persistant volume claims for pods that require persistence. From kubernetes directory run:
 
 ```bash
-kubectl create -f mysql-pv.yaml
+./run-once.sh
 ```
 
 Add an entry in your /etc/hosts file. Replace <minikube_ip> with the output of the command:
