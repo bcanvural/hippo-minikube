@@ -128,6 +128,20 @@ kubectl port-forward deployments/hippo 5005:5005
 kubectl get pods #get the name of the pod you want to set breakpoints for
 kubectl port-forward <pod_name_goes_here>  5005:5005
 ```
+## Usage & Resource Monitoring
+
+You can enable heapster https://github.com/kubernetes/heapster on the running cluster by running:
+
+```bash
+minikube addons enable heapster
+```
+
+Note that this might take a while. Then, open the dashboard by running:
+
+```bash
+minikube addons open heapster
+```
+You can login with "admin/admin" and observe the pods' resource usage.
 
 ### Remarks
 * conf/context.xml has mysql configured. This is typical mysql setup for a Hippo project except that the url for the database server points to:
