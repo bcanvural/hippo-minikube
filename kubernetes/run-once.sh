@@ -6,3 +6,4 @@
 kubectl create -f mysql-pv.yaml
 #Create secret which carries the mysql password
 kubectl create secret generic mysql-pass --from-literal=password=hippo
+kubectl create secret generic mysql-root-pass --from-literal=password=root

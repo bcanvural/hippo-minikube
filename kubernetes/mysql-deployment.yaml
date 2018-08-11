@@ -28,6 +28,11 @@ spec:
       - image: mysql:5.7
         name: mysql
         env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-root-pass
+              key: password
         - name: MYSQL_DATABASE
           value: repositoryDS
         - name: MYSQL_USER
