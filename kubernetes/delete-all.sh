@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -x
 kubectl delete deployment mysql
 kubectl delete service mysql
 kubectl delete service,deployment backatcha-server
