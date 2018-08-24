@@ -53,7 +53,7 @@
     </Logger>
 
     <!-- Site logging -->
-    <Logger name="org.hippoecm.hst" level="warn"/>
+    <Logger name="org.hippoecm.hst" level="info"/>
 
     <!-- DiagnosticReportingValve only logs when diagnostics enabled in hst:hosts config in repo hence
          can be here on level 'info' -->

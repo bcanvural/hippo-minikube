@@ -6,8 +6,7 @@
   <p><@fmt.message key="homepage.text" var="text"/>${text?html}</p>
   <#if !hstRequest.requestContext.cmsRequest>
     <p>
-      [This text can be edited
-      <a href="http://localhost:8080/cms/?1&path=/content/documents/administration/labels/homepage" target="_blank">here</a>.]
+      <h3>Cluster Node Id: <#if clusterNodeId??>${clusterNodeId}</#if></h3>
     </p>
   </#if>
 </div>

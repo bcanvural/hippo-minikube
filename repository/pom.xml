@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.example</groupId>
+    <artifactId>myhippoproject</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+
+  <name>Repository</name>
+  <artifactId>repository</artifactId>
+  <packaging>war</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-package-app-dependencies</artifactId>
+      <type>pom</type>
+      <exclusions>
+        <exclusion>
+          <groupId> org.onehippo.cms7</groupId>
+          <artifactId>hippo-essentials-components-repository</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.onehippo.cms7</groupId>-->
+      <!--<artifactId>hippo-essentials-components-hst</artifactId>-->
+    <!--</dependency>-->
+  </dependencies>
+
+  <build>
+    <finalName>repository</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/webapp</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>WEB-INF/web.xml</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+</project>

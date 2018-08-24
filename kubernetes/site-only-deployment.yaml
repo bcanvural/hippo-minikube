@@ -1,56 +1,55 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hippo
+  name: site-only
   labels:
-    app: hippo
+    app: site-only
     tier: backend
 spec:
   type: ClusterIP
-#  sessionAffinity: ClientIP #Ingress controller uses cookies for session affinity
   ports:
     - port: 8080
   selector:
-    app: hippo
+    app: site-only
     tier: backend
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hippo
+  name: site-only
 spec:
   replicas: 1
   selector:
     matchLabels:
-          app: hippo
+          app: site-only
   template:
     metadata:
       labels:
-        app: hippo
+        app: site-only
         tier: backend
     spec:
       containers:
         - name: hippo
-          image: bcanvural/hippo-mysql-kube:v5 #Point to a public docker image registry
+          image: bcanvural/site-only:v6 #Point to a public docker image registry
           env:
             - name: "JAVA_ENABLE_DEBUG"
-              value: "false" #Set to true for remote debugger
+              value: "true" #Set to true for remote debugger
             - name: "REPO_BOOTSTRAP"
-              value: "true"
+              value: "false" #Always false when site is deployed separately
           ports:
             - containerPort: 8080
-#            - containerPort: 5005
-#              name: "jvm-debug" #Uncomment two lines for remote debugger
+            - containerPort: 5005
+              name: "jvm-debug" #Uncomment two lines for remote debugger
           readinessProbe:
             httpGet:
-              path: /cms/ping/
+              path: /site/ping/
               port: 8080
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            failureThreshold: 18 # wait at most 4 minutes for readiness
+            initialDelaySeconds: 20
+            periodSeconds: 5
+            failureThreshold: 18
           livenessProbe:
             httpGet:
-              path: /cms/ping/
+              path: /site/ping/
               port: 8080
             initialDelaySeconds: 120
             periodSeconds: 10

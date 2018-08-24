@@ -27,8 +27,8 @@ ENV REPO_CONFIG "file:${CATALINA_BASE}/conf/repository.xml"
 # Repository Directory
 ENV REPO_PATH "${CATALINA_BASE}/repository"
 
-# Bootstrapping enabled?
-ENV REPO_BOOTSTRAP "true"
+# Bootstrapping enabled? #Keep commented-out
+#ENV REPO_BOOTSTRAP "false" #Manage this in kubernetes so we can have single dockerfile for cms-site and site-only
 
 # Index Export Zip file download URIs (e.g, file path that could possibly be shared through a shared Docker Volume).
 # Note: You can set space-separated string to specify multiple URIs including SFTP, HTTP, HTTPS, etc. See index-init.sh for detail.
