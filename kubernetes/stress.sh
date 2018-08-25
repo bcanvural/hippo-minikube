@@ -9,8 +9,8 @@ function shutdown(){
 }
 trap shutdown SIGINT SIGTERM
 
-for i in `seq 1 10`; do http hippo.site > /dev/null; done &
+for i in `seq 1 100`; do http hippo.site-only > /dev/null; done &
 child1=$!
-for i in `seq 1 10`; do http hippo.site > /dev/null; done &
+for i in `seq 1 100`; do http hippo.site-only > /dev/null; done &
 child2=$!
 wait $child1 $child2
