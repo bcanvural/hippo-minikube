@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: hippo
-          image: bcanvural/site-only:v9 #Point to a public docker image registry
+          image: bcanvural/site-only:v10 #Point to a public docker image registry
           env:
             - name: "JAVA_ENABLE_DEBUG"
               value: "true" #Set to true for remote debugger
