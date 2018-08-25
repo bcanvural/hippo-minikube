@@ -16,16 +16,6 @@
       <groupId>org.onehippo.cms7</groupId>
       <artifactId>hippo-package-app-dependencies</artifactId>
       <type>pom</type>
-      <exclusions>
-        <exclusion>
-          <groupId> org.onehippo.cms7</groupId>
-          <artifactId>hippo-essentials-components-repository</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.onehippo.cms7</groupId>
-      <artifactId>hippo-essentials-components-hst</artifactId>
     </dependency>
   </dependencies>
 
