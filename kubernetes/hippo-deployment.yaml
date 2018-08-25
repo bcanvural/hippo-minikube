@@ -31,16 +31,16 @@ spec:
     spec:
       containers:
         - name: hippo
-          image: bcanvural/hippo-mysql-kube:v5 #Point to a public docker image registry
+          image: bcanvural/hippo-mysql-kube:v9 #Point to a public docker image registry
           env:
             - name: "JAVA_ENABLE_DEBUG"
-              value: "false" #Set to true for remote debugger
+              value: "true" #Set to true for remote debugger
             - name: "REPO_BOOTSTRAP"
               value: "true"
           ports:
             - containerPort: 8080
-#            - containerPort: 5005
-#              name: "jvm-debug" #Uncomment two lines for remote debugger
+            - containerPort: 5005
+              name: "jvm-debug" #Uncomment two lines for remote debugger
           readinessProbe:
             httpGet:
               path: /cms/ping/
