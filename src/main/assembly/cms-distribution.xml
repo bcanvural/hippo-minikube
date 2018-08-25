@@ -44,4 +44,7 @@
       </includes>
     </dependencySet>
   </dependencySets>
+    <componentDescriptors>
+      <componentDescriptor>conf-component.xml</componentDescriptor>
+    </componentDescriptors>
 </assembly>
