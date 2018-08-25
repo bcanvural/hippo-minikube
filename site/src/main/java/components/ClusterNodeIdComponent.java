@@ -17,7 +17,8 @@ public class ClusterNodeIdComponent extends CommonComponent {
     @Override
     public void doBeforeRender(final HstRequest request, final HstResponse response) {
         super.doBeforeRender(request, response);
-        request.setAttribute("clusterNodeId", RepoUtils.getClusterNodeId(getConfigUserSession()));
+        String clusterNodeId = RepoUtils.getClusterNodeId(getConfigUserSession());
+        request.setAttribute("clusterNodeId", clusterNodeId);
     }
 
     private Session getConfigUserSession(){
