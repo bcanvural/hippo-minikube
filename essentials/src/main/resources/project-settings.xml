@@ -4,7 +4,7 @@
     <cmsModule>cms</cmsModule>
     <confirmParams>false</confirmParams>
     <developmentSubModule>development</developmentSubModule>
-    <enterprise>false</enterprise>
+    <enterprise>true</enterprise>
     <extraTemplates>true</extraTemplates>
     <projectNamespace>myhippoproject</projectNamespace>
     <repositoryDataModule>repository-data</repositoryDataModule>

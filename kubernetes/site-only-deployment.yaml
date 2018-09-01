@@ -30,12 +30,14 @@ spec:
     spec:
       containers:
         - name: hippo
-          image: bcanvural/site-only:v10 #Point to a public docker image registry
+          image: bcanvural/site-only-index:v4 #Point to a public docker image registry
           env:
             - name: "JAVA_ENABLE_DEBUG"
               value: "true" #Set to true for remote debugger
             - name: "REPO_BOOTSTRAP"
               value: "false" #Always false when site is deployed separately
+            - name: "INDEX_EXPORT_URL"
+              value: "hippo.default.svc.cluster.local:8080/cms/ws/indexexport"
           ports:
             - containerPort: 8080
             - containerPort: 5005

@@ -11,6 +11,19 @@
   <name>My Hippo Project CMS</name>
   <description>My Hippo Project CMS</description>
   <dependencies>
+    <!--<dependency>-->
+      <!--<groupId>com.onehippo.cms7</groupId>-->
+      <!--<artifactId>hippo-addon-edition-indicator</artifactId>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>com.onehippo.cms7</groupId>-->
+      <!--<artifactId>hippo-enterprise-package-app-dependencies</artifactId>-->
+      <!--<type>pom</type>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>com.onehippo.cms7</groupId>-->
+      <!--<artifactId>hippo-addon-lucene-export</artifactId>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.onehippo.cms7.hst.dependencies</groupId>
       <artifactId>hst-repository-dependencies</artifactId>
@@ -63,6 +76,19 @@
     <dependency>
       <groupId>org.onehippo.cms7</groupId>
       <artifactId>hippo-essentials-components-cms</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.onehippo.cms7</groupId>
+      <artifactId>hippo-addon-edition-indicator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.onehippo.cms7</groupId>
+      <artifactId>hippo-enterprise-package-app-dependencies</artifactId>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>com.onehippo.cms7</groupId>
+      <artifactId>hippo-addon-lucene-export</artifactId>
     </dependency>
   </dependencies>
   <build>

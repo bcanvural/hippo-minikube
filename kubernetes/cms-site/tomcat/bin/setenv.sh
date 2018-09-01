@@ -36,7 +36,8 @@ L4J_OPTS="-Dlog4j.configurationFile=file://${CATALINA_BASE}/conf/log4j2.xml -DLo
 #------------------------------------------------------------------------------
 
 # JVM heap size options, depending on the variables set by Dockerfile.
-JVM_OPTS="-server -Xms${MIN_HEAP_SIZE} -Xmx${MAX_HEAP_SIZE} -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true"
+#JVM_OPTS="-server -Xms${MIN_HEAP_SIZE} -Xmx${MAX_HEAP_SIZE} -XX:+UseG1GC -Djava.util.Arrays.useLegacyMergeSort=true"
+JVM_OPTS="-server -Xms${MIN_HEAP_SIZE} -Xmx${MAX_HEAP_SIZE} -Djava.util.Arrays.useLegacyMergeSort=true"
 
 #------------------------------------------------------------------------------
 
@@ -73,4 +74,8 @@ CATALINA_OPTS="${JVM_OPTS} ${VGC_OPTS} ${REP_OPTS} ${DMP_OPTS} ${RMI_OPTS} ${L4J
 # Execute ${CATALINA_BASE}/bin/index-init.sh if exits.
 if [ -r "${CATALINA_BASE}/bin/index-init.sh" ]; then
   . "${CATALINA_BASE}/bin/index-init.sh" "${REPO_PATH}" ${INDEX_EXPORT_ZIP}
+fi
+
+if [ x"${INDEX_EXPORT_URL}" != x ]; then
+. "${CATALINA_BASE}/bin/exim.sh"
 fi
