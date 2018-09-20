@@ -1,0 +1,23 @@
+definitions:
+  config:
+    /hst:hst/hst:hosts/aws/REPLACE:
+      .meta:residual-child-node-category: content
+      jcr:primaryType: hst:virtualhost
+      /eu-west-1:
+        .meta:residual-child-node-category: content
+        jcr:primaryType: hst:virtualhost
+        /elb:
+          .meta:residual-child-node-category: content
+          jcr:primaryType: hst:virtualhost
+          /amazonaws:
+            .meta:residual-child-node-category: content
+            jcr:primaryType: hst:virtualhost
+            /com:
+              .meta:residual-child-node-category: content
+              jcr:primaryType: hst:virtualhost
+              /hst:root:
+                .meta:residual-child-node-category: content
+                jcr:primaryType: hst:mount
+                hst:homepage: root
+                hst:mountpoint: /hst:hst/hst:sites/myhippoproject
+                hst:showcontextpath: false
