@@ -55,7 +55,6 @@ COPY ${INDEX_INIT_SH} ${CATALINA_BASE}/bin/
 RUN apt-get update && apt-get -y install unzip
 COPY tomcat/bin/exim.sh ${CATALINA_BASE}/bin/
 
-#COPY tomcat/conf/context-default-mysql.xml ${CATALINA_BASE}/conf/context.xml
 COPY mysql-connector-java-5.1.46.jar ${CATALINA_BASE}/common/lib/mysql-connector-java-5.1.46.jar
 ARG TAR_BALL=*.tar.gz
 ADD ${TAR_BALL} ${CATALINA_BASE}/

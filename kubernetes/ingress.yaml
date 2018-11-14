@@ -6,7 +6,6 @@ metadata:
     ingress.kubernetes.io/affinity: cookie
     ingress.kubernetes.io/session-cookie-name: route
     ingress.kubernetes.io/session-cookie-hash: sha1
-#    ingress.kubernetes.io/rewrite-target: /site #does not work in minikube for some reason
     nginx.ingress.kubernetes.io/rewrite-target: /site
     ingress.kubernetes.io/proxy-cookie-path: "/site/ /"
     kubernetes.io/ingress.class: "nginx"
